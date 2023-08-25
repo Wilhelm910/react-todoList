@@ -1,26 +1,89 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { useState } from 'react';
 import './App.css';
+import InputField from './components/InputField';
+import { Todo } from './model';
+import TodoCard from './components/TodoCard';
 
-function App() {
+
+export default function App() {
+
+  const [todo, setTodo] = useState<string>("")
+  const [todoList, setTodoList] = useState<Todo[]>([])
+
+  console.log(todo)
+
+  function addTodo(e: React.FormEvent) {
+    e.preventDefault();
+
+    if (todo) {
+      setTodoList([...todoList,
+      {
+        id: Date.now(),
+        todo: todo,
+        isDone: false
+      }])
+      setTodo("")
+    }
+  }
+  /*
+    const drawTodos = todoList.map((item) => {
+      return (
+        <div>
+          <TodoCard
+           
+          />
+        </div>
+      )
+    })
+  */
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <span className='heading'>Taskify</span>
+      <InputField
+        todo={todo}
+        setTodo={setTodo}
+        addTodo={addTodo}
+      />
+      <TodoCard
+        todoList={todoList}
+        setTodoList={setTodoList}
+      />
     </div>
-  );
+  )
 }
 
-export default App;
+
+
+
+
+
+
+/*
+function types() {
+
+  let name: string;
+  let age: number;
+  let strORnum: string | number;
+  let isStudent: boolean;
+  let hobbies: string[];
+  let role: [number, string];
+  let personName: unknown
+
+  type Person = {
+    name: string;
+    age: number;
+    optional?: string;
+  }
+  let person: Person
+
+  interface city {
+    location: string;
+    postCode: number;
+  }
+
+  interface country extends city {
+    language: string;
+  }
+
+}
+*/

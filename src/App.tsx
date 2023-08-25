@@ -10,7 +10,6 @@ export default function App() {
   const [todo, setTodo] = useState<string>("")
   const [todoList, setTodoList] = useState<Todo[]>([])
 
-  console.log(todo)
 
   function addTodo(e: React.FormEvent) {
     e.preventDefault();

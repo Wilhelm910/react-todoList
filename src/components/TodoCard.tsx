@@ -11,18 +11,14 @@ interface Props {
 
 
 export default function TodoCard(props: Props) {
-    console.log(props)
     const drawTodos = props.todoList.map((item) => {
-        console.log(item)
         return (
-            <div>
-                <SingleTodo
-                    key={item.id}
-                    todo={item.todo}
-                    todoList={props.todoList}
-                    setTodoList={props.setTodoList}
-                />
-            </div>
+            <SingleTodo
+                key={item.id}
+                todo={item}
+                todoList={props.todoList}
+                setTodoList={props.setTodoList}
+            />
         )
     })
     return (
